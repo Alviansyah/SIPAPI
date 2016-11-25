@@ -15,8 +15,8 @@ class MedisController extends Controller
     }
 
     public function showDiagnosisView() {
-        $data['data'] = DiagnosisModel::all();
-        return view('pages.medis.rekammedis', $data);
+        $data['diagnosis'] = DiagnosisModel::join('penyakit','diagnosispenyakit.idPenyakit','=','penyakit.idPenyakit')->select('diagnosispenyakit.idDiagnosis','diagnosispenyakit.idSapi','penyakit.namaPenyakit','diagnosispenyakit.saran')->get();
+        return view('pages.medis.diagnosis', $data);
     }
 
     public function showForm() {
@@ -25,11 +25,11 @@ class MedisController extends Controller
 
     public function viewDiagnosis($id) {
         $data['diagnosis'] = DiagnosisModel::find($id);
-        return view('pages.sapi.formsapi', $data);
+        return view('pages.sapi.detaildiagnosis', $data);
     }
 
     public function viewHipotesis($id) {
-        $data['data'] = HipotesisModel::where('idSapi', '=', $id)->get();
+        $data['hipotesis'] = HipotesisModel::where('idSapi', '=', $id)->get();
         return view('pages.medis.detailhipotesis', $data);
     }
 
