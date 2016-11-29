@@ -14,7 +14,7 @@
         <a href="#" class="dropdown-button" data-activates="penyakit" data-beloworigin="true" style="width: 130px !important;"><center>Penyakit</center></a>
         <ul id="penyakit" class="dropdown-content">
             <li><a href="#">Gejala</a></li>
-            <li><a href="#">Diagnosis</a></li>
+            <li><a href="/diagnosis">Diagnosis</a></li>
             <li><a href="#">Hipotesis</a></li>
             <li><a href="#">Daftar Penyakit</a></li>
         </ul>

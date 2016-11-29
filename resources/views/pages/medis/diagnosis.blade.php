@@ -5,6 +5,11 @@
 @section('content')
 <div class="row">
     <div class="col s12 m12 l12">
+        <h4 class="left-aligned">Data Diagnosis</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 m12 l12">
         <table class="responsive-table">
             <thead>
                 <tr>
@@ -16,7 +21,7 @@
             </thead>
 
             <tbody>
-            @foreach($diagnosis as $diagnosis)
+                @foreach($diagnosis as $diagnosis)
                 <tr>
                     <td>{{ $diagnosis->idDiagnosis }}</td>
                     <td>{{ $diagnosis->idSapi }}</td>

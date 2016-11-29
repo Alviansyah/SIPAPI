@@ -38,7 +38,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="#">Gejala</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Diagnosis</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/diagnosis">Diagnosis</a></li>
                         <li><a class="waves-effect waves-yellow" href="#">Hipotesis</a></li>
                         <li><a class="waves-effect waves-yellow" href="#">Daftar Penyakit</a></li>
                     </ul>
