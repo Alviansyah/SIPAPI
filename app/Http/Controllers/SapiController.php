@@ -13,7 +13,7 @@ class SapiController extends Controller
     }
 
     public function showSapiView(){
-        $data['data'] = SapiModel::all();
+        $data['data'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->select('datasapi.*','kategori.kategori')->get();
         return view('pages.sapi.datasapi', $data);
     }
 

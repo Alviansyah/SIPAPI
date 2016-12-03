@@ -29,7 +29,7 @@
                             @foreach($data as $sapi)
                             <tr>
                                 <td>{{ $sapi->idSapi }}</td>
-                                <td>{{ $sapi->idKategori }}</td>
+                                <td>{{ $sapi->kategori }}</td>
                                 <td>{{ $sapi->jenisKelamin == 1 ? 'Pria' : 'Wanita' }}</td>
                                 <td>{{ $sapi->usia }} tahun</td>
                                 <td>{{ $sapi->tinggi }} cm</td>

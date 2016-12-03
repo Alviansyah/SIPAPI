@@ -1,0 +1,35 @@
+Aktor : Pegawai
+    !. Pemeliharaan
+        - Identitas Sapi : Create, Read, Update, Delete [idSapi, jenisKelamin, usia, bobot, tinggi, kategori, status]
+            • +Fitur : Cari ID [idSapi], Urutkan [idKategori/umur/status]
+        - Rekam Medis : Read [idSapi, tanggal, namaPenyakit, gejala, saran]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+        - Jadwal Pakan : Read [idJadwal, status, hari, jam, jenisPakan]
+        - Stok Sapi : Create, Read [idStok, total, pedet, dewasa, terjual, mati, sakit]
+            • +Fitur : Urutkan [tanggal]
+    2. Kandang : Create, Read, Update [idKandang, idSapi, kategori, status]
+    3. Penyakit
+        - Pemeriksaan : Create, Read [idPemeriksaan, idSapi, tanggal, kombinasiGejala]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+        - Diagnosis : Read [idDiagnosis, tanggal, idSapi, namaPenyakit, gejala, saran]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+
+Aktor : Dokter
+    1. Pemeliharaan
+        - Rekam Medis : Create, Read [idRekamMedis, tanggal, idSapi, namaPenyakit, gejala, saran]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+
+    2. Penyakit
+        - Pemeriksaan : Read [idPemeriksaan, idSapi, tanggal, kombinasiGejala]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+        - Diagnosis : Create, Read [idDiagnosis, idPemeriksaan, idSapi, tanggal, namaPenyakit, gejala, saran]
+            • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
+        - Daftar Penyakit : Read [namaPenyakit, gejala]
+
+Aktor : Kepala DISPETER
+    1. Laporan
+        - Pemeliharaan : Read
+            ♦ Elemen
+                ○ Data sapi : datasapi
+                ○ Rekam Medis : diagnosispenyakit
+        - Stok Sapi : Read

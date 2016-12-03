@@ -27,6 +27,8 @@ Route::get('/formsapi','SapiController@showForm');
 Route::get('/sapiedit/{id}','SapiController@editDataSapi');
 Route::get('/sapidetail/{id}','SapiController@viewDataSapi');
 
-Route::get('/medis','MedisController@showDiagnosisView');
+Route::get('/medis','MedisController@showRekamMedisView');
 
 Route::get('/diagnosis','DiagnosisController@showDiagnosisProses');
+
+Route::get('/gejala','MedisController@showGejalaPenyakit');

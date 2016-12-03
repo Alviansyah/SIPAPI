@@ -14,9 +14,9 @@ class MedisController extends Controller
         $this->middleware('auth');
     }
 
-    public function showDiagnosisView() {
+    public function showRekamMedisView() {
         $data['diagnosis'] = DiagnosisModel::join('penyakit','diagnosispenyakit.idPenyakit','=','penyakit.idPenyakit')->select('diagnosispenyakit.idDiagnosis','diagnosispenyakit.idSapi','penyakit.namaPenyakit','diagnosispenyakit.saran')->get();
-        return view('pages.medis.diagnosis', $data);
+        return view('pages.medis.rekammedis', $data);
     }
 
     public function showForm() {
