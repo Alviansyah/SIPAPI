@@ -13,9 +13,8 @@
     <li>
         <a href="#" class="dropdown-button" data-activates="penyakit" data-beloworigin="true" style="width: 130px !important;"><center>Penyakit</center></a>
         <ul id="penyakit" class="dropdown-content">
-            <li><a href="#">Gejala</a></li>
-            <li><a href="/diagnosis">Diagnosis</a></li>
-            <li><a href="#">Hipotesis</a></li>
+            <li><a href="/pemeriksaan">Pemeriksaan</a></li>
+            <li><a href="/diagnosisproses">Diagnosis</a></li>
             <li><a href="#">Daftar Penyakit</a></li>
         </ul>
     </li>
@@ -23,7 +22,7 @@
         <a href="#" class="dropdown-button" data-activates="laporan" data-beloworigin="true" style="width: 130px !important;"><center>Laporan</center></a>
         <ul id="laporan" class="dropdown-content">
             <li><a href="#">Pemeliharaan</a></li>
-            <li><a href="#">Jumlah Stok Sapi</a></li>
+            <li><a href="#">Stok Sapi</a></li>
         </ul>
     </li>
     <li class="right-align">

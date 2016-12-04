@@ -9,5 +9,5 @@ class GejalaPenyakitModel extends Model
     protected $table = 'gejalapenyakit';
     protected $primaryKey = 'idGejala';
     public $incrementing = false;
-    public $timestamps = 'false';
+    public $timestamps = false;
 }

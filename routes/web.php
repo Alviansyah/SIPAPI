@@ -12,14 +12,16 @@
 */
 
 //Route::get('/', function () { return view('auth.login'); });
-
+// Autentikasi
+//      Login
 Route::get('/login','Auth\LoginController@showLoginForm');
 Route::post('/login','Auth\LoginController@login');
 Route::get('/logout','Auth\LoginController@logout');
-
+// Register
 Route::get('/register','Auth\RegisterController@showRegistrationForm');
 Route::post('/register','Auth\RegisterController@register');
 
+// Home
 Route::get('/','MenuController@showHome');
 
 // Pemeliharaan
@@ -32,9 +34,15 @@ Route::get('/sapidetail/{id}','SapiController@viewDataSapi');
 Route::get('/sapiarsip/{id}','SapiController@arsipkanDataSapi');
 Route::post('/tambahsapi','SapiController@tambahDataSapi');
 Route::post('/updatesapi/{id}','SapiController@updateDataSapi');
-
+//      Rekam Medis
 Route::get('/medis','MedisController@showRekamMedisView');
 
-Route::get('/diagnosis','DiagnosisController@showDiagnosisProses');
+// Penyakit
+//      Pemeriksaan
+Route::get('/pemeriksaan','PenyakitController@showPemeriksaanView');
+//      Diagnosis
+Route::get('/diagnosis','PenyakitController@showDiagnosisView');
+Route::get('/diagnosisproses','PenyakitController@showDiagnosisProses');
+Route::post('/analisis','PenyakitController@hitungProbabilitasPenyakit');
+//      Daftar Penyakit
 
-Route::get('/gejala','MedisController@showGejalaPenyakit');

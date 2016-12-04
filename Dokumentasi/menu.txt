@@ -16,9 +16,8 @@ Aktor : Pegawai
 
 Aktor : Dokter
     1. Pemeliharaan
-        - Rekam Medis : Create, Read [idRekamMedis, tanggal, idSapi, namaPenyakit, gejala, saran]
+        - Rekam Medis : Read [idRekamMedis, tanggal, idSapi, namaPenyakit, gejala, saran]
             • +Fitur : Cari ID [idSapi], Urutkan [tanggal]
-
     2. Penyakit
         - Pemeriksaan : Read [idPemeriksaan, idSapi, tanggal, kombinasiGejala]
             • +Fitur : Cari ID [idSapi], Urutkan [tanggal]

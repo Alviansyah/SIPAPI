@@ -10,14 +10,15 @@
     </div>
     <div class="row">
         <div class="col s12 m12 l12">
-            <form action="{{url('diagnose')}}" method="POST">
+            <form action="{{url('analisis')}}" method="POST">
+                {!! csrf_field() !!}
                 <table class="responsive-table striped">
                     <?php $num = 0; ?>
                     @foreach ($gejala as $gejala)
                         @if ($num == 0)
                             <tr> @endif
                                 <td>
-                                    <input type="checkbox" id="{{ $gejala->idGejala }}" name="{{ $gejala->idGejala }}" value="{{ $gejala->idGejala }}"/>
+                                    <input type="checkbox" id="{{ $gejala->idGejala }}" name="gejala[]" value="{{ $gejala->idGejala }}"/>
                                     <label for="{{ $gejala->idGejala }}" class="black-text">{{ $gejala->gejala }}</label>
                                 </td>
                                 @if ($num == 2) </tr> @endif

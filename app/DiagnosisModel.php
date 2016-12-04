@@ -8,9 +8,9 @@ class DiagnosisModel extends Model
 {
     protected $table = 'diagnosispenyakit';
     protected $primaryKey = 'idDiagnosis';
-    public $timestamps = 'false';
+    public $timestamps = false;
 
     protected $fillable = [
-        'idPenyakit', 'idSapi','saran'
+        'idPenyakit', 'idSapi', 'saran', 'idkombinasi', 'tanggal', 'saran'
     ];
 }

@@ -14,7 +14,6 @@ class SapiController extends Controller
     }
 
     public function showSapiView(){
-
         $data['data'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->select('datasapi.*','kategori.kategori')->where('arsip', 0)->get();
         return response()->view('pages.sapi.datasapi', $data);
     }
@@ -50,7 +49,7 @@ class SapiController extends Controller
         $data->save();
         session()->forget('state');
         $request->session()->flash('message', 'Data sapi ditambahkan.');
-        return redirect('/sapi');
+        return rezdirect('/sapi');
     }
 
     public function updateDataSapi(Request $request, $id) {

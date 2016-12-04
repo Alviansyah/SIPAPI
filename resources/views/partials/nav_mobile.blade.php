@@ -37,9 +37,8 @@
             <li><a class="collapsible-header waves-effect waves-red">Penyakit</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a class="waves-effect waves-yellow" href="#">Gejala</a></li>
-                        <li><a class="waves-effect waves-yellow" href="/diagnosis">Diagnosis</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Hipotesis</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/pemeriksaan">Pemeriksaan</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/diagnosisproses">Diagnosis</a></li>
                         <li><a class="waves-effect waves-yellow" href="#">Daftar Penyakit</a></li>
                     </ul>
                 </div>
@@ -52,7 +51,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="#">Pemeliharaan</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Jumlah Stok Sapi</a></li>
+                        <li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>
                     </ul>
                 </div>
             </li>
