@@ -10,7 +10,8 @@
     </div>
     <div class="row">
         <div class="col s12 m12 l12">
-            <form action="{{ url('/add') }}" method="POST">
+            <form action="{{ url(Session::get('state')) }}" method="POST">
+                {!! csrf_field() !!}
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
                         <input id="idSapi" type="text" class="validate" name="idSapi" value="{{ $sapi->idSapi or '' }}" required>
@@ -25,7 +26,7 @@
                     @endphp
                     <div class="input-field col s12 m6 l6">
                         <select name="kategori" required>
-                            <option disabled {{ $default or '' }}>Pilih Kategori</option>
+                            <option value="" disabled {{ $default or '' }}>Pilih Kategori</option>
                             <option value="1" {{ $pedet or '' }}>Pedet</option>
                             <option value="2" {{ $dewasa or '' }}>Dewasa</option>
                         </select>
@@ -35,12 +36,12 @@
                 <div class="row">
                     @php
                         if (isset($sapi)) {
-                            ($sapi->jenisKelamin == 1) ? $pria = "selected" : ( $sapi->jenisKelamin == 2 ? $wanita = "selected" : $default = "selected");
+                            ($sapi->jenisKelamin == 1) ? $pria = "selected" : ($sapi->jenisKelamin == 2 ? $wanita = "selected" : $default = "selected");
                         }
                     @endphp
                     <div class="input-field col s12 m6 l6">
                         <select name="jenisKelamin" required>
-                            <option disabled {{ $default or '' }}>Pilih Kelamin</option>
+                            <option value="" {{ $default or '' }} disabled>Pilih Kelamin</option>
                             <option value="1" {{ $pria or '' }}>Pria</option>
                             <option value="2" {{ $wanita or '' }}>Wanita</option>
                         </select>

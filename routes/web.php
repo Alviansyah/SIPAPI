@@ -22,10 +22,16 @@ Route::post('/register','Auth\RegisterController@register');
 
 Route::get('/','MenuController@showHome');
 
+// Pemeliharaan
+//      Identitas Sapi
 Route::get('/sapi','SapiController@showSapiView');
-Route::get('/formsapi','SapiController@showForm');
+Route::post('/sapi','SapiController@showSapiView');
+Route::get('/tambah','SapiController@addDataSapi');
 Route::get('/sapiedit/{id}','SapiController@editDataSapi');
 Route::get('/sapidetail/{id}','SapiController@viewDataSapi');
+Route::get('/sapiarsip/{id}','SapiController@arsipkanDataSapi');
+Route::post('/tambahsapi','SapiController@tambahDataSapi');
+Route::post('/updatesapi/{id}','SapiController@updateDataSapi');
 
 Route::get('/medis','MedisController@showRekamMedisView');
 
