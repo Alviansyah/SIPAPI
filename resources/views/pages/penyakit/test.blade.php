@@ -1,1 +1,1 @@
-{{ $data->kombinasi }}
+{{ $data }}

@@ -36,10 +36,8 @@ class PenyakitController extends Controller
     public function hitungProbabilitasPenyakit(Request $request) {
         $dataPemeriksaan = implode("", $request->get('gejala'));
         $kombinasi = KombinasiModel::select('kombinasi')->where('kombinasi', $dataPemeriksaan)->first();
-        if (emptyArray($kombinasi)){
-
-        }
-        $data['data'] = $kombinasi;
+        
+        $data['data'] = $dataPemeriksaan;
         return response()->view('pages.penyakit.test', $data);
     }
 }
