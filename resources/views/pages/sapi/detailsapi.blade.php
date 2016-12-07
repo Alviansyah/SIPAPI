@@ -49,7 +49,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <a class="waves-effect waves-light btn" href="/sapi" style="margin-right: 10px !important;">Kembali</a><a class="waves-effect waves-light btn" href="/sapiedit/{{ $sapi->idSapi }}" style="margin-right: 10px !important;">Edit</a><a class="waves-effect waves-light btn" href="/sapiarsip/{{ $sapi->idSapi }}">Arsipkan</a>
+                        <a class="waves-effect waves-light btn" href="/sapiedit/{{ $sapi->idSapi }}" style="margin-right: 10px !important;">Edit</a><a class="waves-effect waves-light btn" href="/sapiarsip/{{ $sapi->idSapi }}">Arsipkan</a>
                     </div>
                 </div>
             </div>

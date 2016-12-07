@@ -8,5 +8,6 @@ class PenyakitModel extends Model
 {
     protected $table = 'penyakit';
     protected $primaryKey = 'idPenyakit';
-    public $timestamps = 'false';
+    public $incrementing = false;
+    public $timestamps = false;
 }

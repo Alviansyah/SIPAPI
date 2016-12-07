@@ -15,7 +15,7 @@
         <ul id="penyakit" class="dropdown-content">
             <li><a href="/pemeriksaan">Pemeriksaan</a></li>
             <li><a href="/diagnosisproses">Diagnosis</a></li>
-            <li><a href="#">Daftar Penyakit</a></li>
+            <li><a href="daftarpenyakit">Daftar Penyakit</a></li>
         </ul>
     </li>
     <li>
@@ -26,9 +26,9 @@
         </ul>
     </li>
     <li class="right-align">
-        <a href="#" class="dropdown-button" data-activates="account" data-beloworigin="true" style="width: 250px !important;font-size: 20px !important;">Alvengerz</a>
+        <a href="#" class="dropdown-button" data-activates="account" data-beloworigin="true" style="width: 250px !important;font-size: 20px !important;">{{ $user->username }}</a>
         <ul class="dropdown-content image" id="account" style="background: url('{{ asset('img/userImg.jpg') }}');margin-right: 100px !important;">
-            <a class="name-web disabled">{{ $user->name }}</a>
+            <a class="name-web truncate disabled">{{ $user->name }}</a>
             <a class="email-web" href="#">{{ $user->email }}</a>
             <a class="logout-web" href="{{ url('/logout') }}"><b>Logout</b></a>
         </ul>

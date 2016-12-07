@@ -45,4 +45,4 @@ Route::get('/diagnosis','PenyakitController@showDiagnosisView');
 Route::get('/diagnosisproses','PenyakitController@showDiagnosisProses');
 Route::post('/analisis','PenyakitController@hitungProbabilitasPenyakit');
 //      Daftar Penyakit
-
+Route::get('/daftarpenyakit','PenyakitController@showDaftarPenyakit');

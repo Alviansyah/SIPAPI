@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\KombinasiModel;
 use App\PemeriksaanModel;
+use App\PenyakitModel;
 use App\GejalaPenyakitModel;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,11 @@ class PenyakitController extends Controller
     public function showDiagnosisView(){
         $data['gejala'] = GejalaPenyakitModel::all();
         return response()->view('pages.penyakit.diagnosis', $data);
+    }
+
+    public function showDaftarPenyakit(){
+        $data['data'] = PenyakitModel::all();
+        return response()->view('pages.penyakit.daftarpenyakit', $data);
     }
 
     public function showDiagnosisProses(){

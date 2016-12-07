@@ -22,7 +22,7 @@ main {
 }
 
 .lower-a-bit {
-    margin-top: 30px !important;
+    margin-top: 5px !important;
 }
 
 .no-margin {
@@ -106,7 +106,7 @@ main {
 
 .image a.name-web {
     position: absolute !important;
-    max-width: 150px;
+    max-width: 200px;
     margin: 0;
     left: 0;
     top: 50% !important;

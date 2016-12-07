@@ -39,7 +39,7 @@
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="/pemeriksaan">Pemeriksaan</a></li>
                         <li><a class="waves-effect waves-yellow" href="/diagnosisproses">Diagnosis</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Daftar Penyakit</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/daftarpenyakit">Daftar Penyakit</a></li>
                     </ul>
                 </div>
             </li>

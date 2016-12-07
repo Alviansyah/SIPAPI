@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                <table class="responsive-table">
+                <table class="bordered highlight responsive-table">
                     <thead>
                     <tr>
                         <th data-field="idPemeriksaan">ID Pemeriksaan</th>
