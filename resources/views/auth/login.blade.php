@@ -21,15 +21,25 @@
                 <div class="row valign-wrapper">
                     <div class="col l6 m8 s12 offset-l3 offset-m2">
                             <h5 class="valign">LOGIN</h5>
+                            @if ($errors->first('username'))
+                              <div class="chip">
+                                Username atau password Anda salah. <i class="material-icons close">close</i>
+                              </div>
+                            @endif
+                            @if ($errors->first('password'))
+                              <div class="chip">
+                                Username atau password Anda salah.<i class="material-icons close">close</i>
+                              </div>
+                            @endif
                         <form method="POST" action="{{ url('/login') }}">
                             {!!  csrf_field() !!}
                             <div class="card-panel red lighten-5">
                                 <div class="input-field no-margin-bottom">
-                                    <input id="username" type="text" class="validate" name="username" value="{{ old('username') }}">
+                                    <input id="username" type="text" class="validate" name="username" value="{{ old('username') }}" required>
                                     <label for="username">Username</label>
                                 </div>
                                 <div class="input-field no-margin-top">
-                                    <input id="password" type="password" class="validate" name="password">
+                                    <input id="password" type="password" class="validate" name="password" required>
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="valign-wrapper block-display" style="margin-top: 15px !important;">

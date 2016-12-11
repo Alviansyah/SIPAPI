@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SapiModel;
+use App\JadwalPakanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +17,11 @@ class SapiController extends Controller
     public function showSapiView(){
         $data['data'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->select('datasapi.*','kategori.kategori')->where('arsip', 0)->get();
         return response()->view('pages.sapi.datasapi', $data);
+    }
+
+    public function showJadwalPakanView(){
+        $data['data'] = JadwalPakanModel::orderby("jam","ASC")->get();
+        return response()->view('pages.sapi.jadwalpakan', $data);
     }
 
     public function addDataSapi() {

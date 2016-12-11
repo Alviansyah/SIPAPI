@@ -36,6 +36,8 @@ Route::post('/tambahsapi','SapiController@tambahDataSapi');
 Route::post('/updatesapi/{id}','SapiController@updateDataSapi');
 //      Rekam Medis
 Route::get('/medis','MedisController@showRekamMedisView');
+//      Jadwal Pakan
+Route::get('/jadwalpakan','SapiController@showJadwalPakanView');
 
 // Penyakit
 //      Pemeriksaan

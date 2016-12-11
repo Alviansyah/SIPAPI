@@ -5,7 +5,7 @@
         <ul id="pemeliharaan" class="dropdown-content">
             <li><a href="/sapi">Identitas Sapi</a></li>
             <li><a href="/medis">Rekam Medis</a></li>
-            <li><a href="#">Jadwal Pakan</a></li>
+            <li><a href="/jadwalpakan">Jadwal Pakan</a></li>
             <li><a href="#">Stok Sapi</a></li>
         </ul>
     </li>

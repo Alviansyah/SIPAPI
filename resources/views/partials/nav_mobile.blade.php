@@ -24,7 +24,7 @@
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="/sapi">Identitas Sapi</a></li>
                         <li><a class="waves-effect waves-yellow" href="/medis">Rekam Medis</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Jadwal Pakan</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/jadwalpakan">Jadwal Pakan</a></li>
                         <li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>
                     </ul>
                 </div>
