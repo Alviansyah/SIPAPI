@@ -42,8 +42,8 @@
                     <div class="input-field col s12 m6 l6">
                         <select name="jenisKelamin" required>
                             <option value="" {{ $default or '' }} disabled>Pilih Kelamin</option>
-                            <option value="1" {{ $pria or '' }}>Pria</option>
-                            <option value="2" {{ $wanita or '' }}>Wanita</option>
+                            <option value="1" {{ $pria or '' }}>Jantan</option>
+                            <option value="2" {{ $wanita or '' }}>Betina</option>
                         </select>
                         <label>Jenis Kelamin</label>
                     </div>

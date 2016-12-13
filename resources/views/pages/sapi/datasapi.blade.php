@@ -45,7 +45,7 @@
                           <tr>
                               <td>{{ $sapi->idSapi }}</td>
                               <td>{{ $sapi->kategori }}</td>
-                              <td>{{ $sapi->jenisKelamin == 1 ? 'Pria' : 'Wanita' }}</td>
+                              <td>{{ $sapi->jenisKelamin == 1 ? 'Jantan' : 'Betina' }}</td>
                               <td>{{ $sapi->usia }} tahun</td>
                               <td>{{ $sapi->tinggi }} cm</td>
                               <td>{{ $sapi->bobot }} kg</td>

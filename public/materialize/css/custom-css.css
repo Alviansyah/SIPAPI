@@ -148,23 +148,10 @@ main {
     padding: 16px;
 }
 
-
-/*Class for when element is above threshold*/
-
-.pin-top {
-    position: relative;
+.make-space-right {
+  margin-right: 15px;
 }
 
-
-/*Class for when element is below threshold*/
-
-.pin-bottom {
-    position: relative;
-}
-
-
-/*Class for when element is pinned*/
-
-.pinned {
-    position: fixed !important;
+#sidenav-overlay {
+  z-index: 996;
 }

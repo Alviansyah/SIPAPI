@@ -10,7 +10,7 @@ class PemeriksaanModel extends Model
     protected $primaryKey = 'idPemeriksaan';
     public $timestamps = false;
 
-    protected $fillable = [
-        'idPemeriksaan', 'idSapi', 'tanggal', 'kombinasigejala'
+    public $fillable = [
+      'idSapi', 'gejala', 'tanggal', 'idUser'
     ];
 }

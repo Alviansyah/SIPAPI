@@ -37,4 +37,10 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <textarea id="hasil" name="hasil" class="materialize-textarea black-text" disabled>{{ $hasil or '' }}</textarea>
+            <label for="hasil" class="black-text">Hasil Analisis</label>
+        </div>
+    </div>
 @endsection

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>SIPAPI | Register</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="materialize/css/custom-css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -38,9 +38,24 @@
                             <label for="username">Username</label>
                             @if ($errors->has('username'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
+                                  <strong>{{ $errors->first('username') }}</strong>
+                                </span>
                             @endif
+                        </div>
+                        <div class="input-field">
+                          <select name="level" required>
+                            <option value="" disabled selected>Pilih level</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+                          <label>Materialize Select</label>
+                          @if ($errors->has('level'))
+                              <span class="help-block">
+                                      <strong>{{ $errors->first('level') }}</strong>
+                                  </span>
+                          @endif
                         </div>
                         <div class="input-field no-margin-top">
                             <input id="email" type="email" class="validate" name="email" value="{{ old('email') }}" required>

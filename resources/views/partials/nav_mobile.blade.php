@@ -5,7 +5,7 @@
     <li>
         <div class="userView"><img class="background responsive-img" src="{!! asset('img/userViewBg.jpg') !!}"
                                    alt="BackgroundImage">
-            <a class="left" href="#" style="padding-right: 30px !important;"><img
+            <a class="left" href="#" style="padding-right: 20px !important;"><img
                         class="right circle responsive-img" src="{!! asset('img/userImg.jpg') !!}" alt="UserImg"
                         style="width: 55% !important; height: 55% !important;"></a>
             <a href="#"><span class="white-text name"
@@ -17,21 +17,23 @@
     <li>
         <div class="divider"></div>
     </li>
+    @if ($user->level == 0 || $user->level == 2 || $user->level == 3)
     <li class="no-padding">
         <ul class="collapsible" data-collapsible="accordion">
             <li><a class="collapsible-header waves-effect waves-red">Pemeliharaan</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a class="waves-effect waves-yellow" href="/sapi">Identitas Sapi</a></li>
-                        <li><a class="waves-effect waves-yellow" href="/medis">Rekam Medis</a></li>
-                        <li><a class="waves-effect waves-yellow" href="/jadwalpakan">Jadwal Pakan</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>
+                        @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="/sapi">Identitas Sapi</a></li>@endif
+                        @if ($user->level == 0 || $user->level == 2)<li><a class="waves-effect waves-yellow" href="/medis">Rekam Medis</a></li>@endif
+                        @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="/jadwalpakan">Jadwal Pakan</a></li>@endif
+                        @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>@endif
                     </ul>
                 </div>
             </li>
         </ul>
     </li>
-    <li><a class="waves-effect waves-red" href="#">Perkandangan</a></li>
+    @endif
+    @if ($user->level == 0 || $user->level == 2 || $user->level == 3)
     <li class="no-padding">
         <ul class="collapsible" data-collapsible="accordion">
             <li><a class="collapsible-header waves-effect waves-red">Penyakit</a>
@@ -39,12 +41,14 @@
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="/pemeriksaan">Pemeriksaan</a></li>
                         <li><a class="waves-effect waves-yellow" href="/diagnosisproses">Diagnosis</a></li>
-                        <li><a class="waves-effect waves-yellow" href="/daftarpenyakit">Daftar Penyakit</a></li>
+                        @if ($user->level == 0 || $user->level == 2)<li><a class="waves-effect waves-yellow" href="/daftarpenyakit">Daftar Penyakit</a></li>@endif
                     </ul>
                 </div>
             </li>
         </ul>
     </li>
+    @endif
+    @if ($user->level == 0 || $user->level == 1)
     <li class="no-padding">
         <ul class="collapsible" data-collapsible="accordion">
             <li><a class="collapsible-header waves-effect waves-red">Laporan</a>
@@ -57,6 +61,7 @@
             </li>
         </ul>
     </li>
+    @endif
     <li>
         <div class="divider"></div>
     </li>

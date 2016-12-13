@@ -41,7 +41,14 @@ class SapiController extends Controller
     }
 
     public function tambahDataSapi(Request $request) {
-        $input = Validator::make($request->all(), ['idSapi' => 'required', 'kategori' => 'required', 'jenisKelamin' => 'required', 'usia' => 'required', 'tinggi' => 'required', 'bobot' => 'required']);
+        $input = Validator::make($request->all(), [
+          'idSapi' => 'required',
+          'kategori' => 'required',
+          'jenisKelamin' => 'required',
+          'usia' => 'required',
+          'tinggi' => 'required',
+          'bobot' => 'required'
+        ]);
         if ($input->fails()){
             return back()->withErrors($input)->withInput();
         }
@@ -55,7 +62,7 @@ class SapiController extends Controller
         $data->save();
         session()->forget('state');
         $request->session()->flash('message', 'Data sapi ditambahkan.');
-        return rezdirect('/sapi');
+        return redirect('/sapi');
     }
 
     public function updateDataSapi(Request $request, $id) {

@@ -14,5 +14,3 @@
         @include('partials._scripts')
     </body>
 </html>
-
-<!-- File template for several view -->
