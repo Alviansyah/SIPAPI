@@ -34,7 +34,7 @@
                 <h5>{{ $gejaladata[$i]['kategori'] }}</h5>
                 <table class="responsive-table">
                   @for ($j = 0; $j < count($gejaladata[$i])-1; $j++)
-                  <input type="checkbox" id="{{ $gejaladata[$i][$j][0] }}" name="gejala[]" value="{{ '%'.$gejaladata[$i][$j][0].'%' }}"/>
+                  <input type="checkbox" id="{{ $gejaladata[$i][$j][0] }}" name="gejala[]" value="{{ $gejaladata[$i][$j][0] }}"/>
                   <label class="black-text make-space-right" for="{{ $gejaladata[$i][$j][0] }}">{{ $gejaladata[$i][$j][1] }}</label>
                   @endfor
                 </table>

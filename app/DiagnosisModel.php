@@ -11,6 +11,6 @@ class DiagnosisModel extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idPenyakit', 'idSapi', 'saran', 'idkombinasi', 'tanggal', 'saran'
+        'idPemeriksaan', 'tanggal', 'saran', 'idDokter'
     ];
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Validator;
 use App\KombinasiModel;
 use App\PemeriksaanModel;
 use App\PenyakitModel;
 use App\GejalaPenyakitModel;
 use App\SapiModel;
+use App\DiagnosisModel;
 use Illuminate\Http\Request;
 
 class PenyakitController extends Controller
@@ -71,13 +73,36 @@ class PenyakitController extends Controller
     }
 
     public function analisisDataPemeriksaan($id) {
-      $data['dataset'] = PemeriksaanModel::join('users', 'pemeriksaan.idUser', 'users.id')->where('pemeriksaan.idPemeriksaan', $id)->select('pemeriksaan.*', 'users.name as petugas')->first();
-      return response()->view('pages.penyakit.analisis', $data)
+      $data = PemeriksaanModel::join('users', 'pemeriksaan.idUser', 'users.id')->where('pemeriksaan.idPemeriksaan', $id)->select('pemeriksaan.*', 'users.name as petugas')->first();
+      $datagejala = explode(',', $data->gejala);
+      $dataset = array('idPemeriksaan' => $data->idPemeriksaan, 'idSapi' => $data->idSapi, 'petugas' => $data->petugas);
+      $gejala = $this->getGejalaData($datagejala);
+      $kombinasigejala = $this->getKombinasiPenyakit($datagejala);
+      $prediksi = $this->hitungPrediksiPenyakit($datagejala, $kombinasigejala);
+      return response()->view('pages.penyakit.analisis', compact('dataset', 'gejala', 'prediksi', 'datapenyakitDB'));
     }
 
     public function showDiagnosisView(){
-        $data['gejala'] = GejalaPenyakitModel::all();
+        $data['diagnosis'] = Diagnosis::all();
         return response()->view('pages.penyakit.diagnosis', $data);
+    }
+
+    public function tambahDiagnosis(Request $request){
+      $input = Validator::make($request->all(), [
+        'idPemeriksaan' => 'required',
+        'saran' => 'required'
+      ]);
+      if ($input->fails()){
+          return back()->withErrors($input)->withInput();
+      }
+      $data = new DiagnosisModel();
+      $data->idPemeriksaan = $request->idPemeriksaan;
+      $data->saran = $request->saran;
+      $data->idDokter = Auth::user()->id;
+      $data->save();
+      PemeriksaanModel::where('idPemeriksaan', $request->idPemeriksaan)->update(['status' => 1]);
+      $request->session()->flash('message', 'Data diagnosis sapi ditambahkan.');
+      return redirect('/pemeriksaan');
     }
 
     public function showDaftarPenyakit(){
@@ -85,11 +110,61 @@ class PenyakitController extends Controller
         return response()->view('pages.penyakit.daftarpenyakit', $data);
     }
 
-    public function hitungProbabilitasPenyakit(Request $request) {
-      $datagejala = KombinasiModel::where(function($like) use ($data) {
-        foreach ($data as $key => $value) {
-          $like->orWhere('kombinasi', 'LIKE', $value);
+    public function getGejalaData($DATA_GEJALA){
+      $data = GejalaPenyakitModel::where(function($like) use ($DATA_GEJALA) {
+        foreach ($DATA_GEJALA as $key => $value) {
+          $like->orWhere('idGejala', 'LIKE', '%'.$value.'%');
         }
       })->get();
+      $fixed = array();
+      foreach ($data as $row) {
+        $fixed[] = ['idGejala' => $row->idGejala, 'gejala' => $row->gejala];
+      }
+      return $fixed;
     }
+
+    public function getKombinasiPenyakit($DATA_GEJALA) {
+      $data = KombinasiModel::where(function($like) use ($DATA_GEJALA) {
+        foreach ($DATA_GEJALA as $key => $value) {
+          $like->orWhere('kombinasi', 'LIKE', '%'.$value.'%');
+        }
+      })->get();
+      $fixed = array();
+      foreach ($data as $row) {
+        $fixed[] = ['idPenyakit' => $row->idPenyakit, 'kombinasi' => $row->kombinasi];
+      }
+      return $fixed;
+    }
+
+    public function hitungPrediksiPenyakit($DATA_GEJALA_INPUT, $DATA_KOMBINASI_GEJALA_PENYAKIT){
+      $datapenyakitDB = PenyakitModel::select('namaPenyakit')->get();
+      $numkombinasi = count($DATA_KOMBINASI_GEJALA_PENYAKIT);
+      $numgejalainput = count($DATA_GEJALA_INPUT);
+      $DATA_PREDIKSI = array();
+
+      $penyakitDB = array();
+      foreach ($datapenyakitDB as $row) {
+        $penyakitDB[] = $row->namaPenyakit;
+      }
+
+      $kombinasigejalapenyakit = array();
+      for ($i=0; $i < $numkombinasi; $i++) {
+        $kombinasigejalapenyakit[] = explode(',', $DATA_KOMBINASI_GEJALA_PENYAKIT[$i]['kombinasi']);
+      }
+
+      $PREDIKSI = array();
+      for ($i = 0; $i < $numkombinasi; $i++) {
+        $num_exists = 0;
+        for ($j=0; $j < $numgejalainput; $j++) {
+          if (in_array($DATA_GEJALA_INPUT[$j], $kombinasigejalapenyakit[$i])) {
+            $num_exists++;
+          }
+        }
+        $prediksi_penyakit = (($num_exists/$numkombinasi)*100);
+        $PREDIKSI[] = ['Penyakit' => $penyakitDB[$i], 'prediksi' => $prediksi_penyakit];
+      }
+
+      return $PREDIKSI;
+    }
+
 }
