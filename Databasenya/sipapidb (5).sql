@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2016 at 11:44 AM
+-- Generation Time: Dec 13, 2016 at 06:06 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -78,7 +78,7 @@ INSERT INTO `datasapi` (`idSapi`, `idKategori`, `jenisKelamin`, `usia`, `tinggi`
 ('7', '1', '1', '5', '3', '350', 0, 0),
 ('8', '2', '2', '9', '6', '500', 0, 0),
 ('9', '3', '2', '11', '7', '500', 0, 0),
-('BFL457', '2', '1', '3', '120', '75', 0, 0);
+('BFL457', '2', '1', '3', '120', '75', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -87,29 +87,20 @@ INSERT INTO `datasapi` (`idSapi`, `idKategori`, `jenisKelamin`, `usia`, `tinggi`
 --
 
 CREATE TABLE `diagnosis` (
-  `idDiagnosis` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `idPenyakit` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `idDiagnosis` int(255) NOT NULL,
   `idPemeriksaan` int(11) NOT NULL,
-  `idSapi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `idkombinasi` int(11) NOT NULL,
-  `tanggal` date NOT NULL,
-  `saran` varchar(225) COLLATE utf8_unicode_ci NOT NULL
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `saran` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `idDokter` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `diagnosis`
 --
 
-INSERT INTO `diagnosis` (`idDiagnosis`, `idPenyakit`, `idPemeriksaan`, `idSapi`, `idkombinasi`, `tanggal`, `saran`) VALUES
-('1', 'P1', 0, '1', 1, '0000-00-00', 'harus minum yang banyak'),
-('10', 'P9', 0, '1', 2, '0000-00-00', 'banyak makan nasi'),
-('2', 'P1', 0, '1', 3, '0000-00-00', 'banyak istirahat'),
-('3', 'P3', 0, '2', 0, '0000-00-00', 'makan yang banyak'),
-('4', 'P3', 0, '2', 0, '0000-00-00', 'makan yg banyak'),
-('5', 'P6', 0, '2', 0, '0000-00-00', 'sering minum ya'),
-('6', 'P9', 0, '8', 0, '0000-00-00', 'kurangi jajan'),
-('8', 'P6', 0, '6', 0, '0000-00-00', 'jangan nakal '),
-('9', 'P3', 0, '5', 0, '0000-00-00', 'priksa lagi');
+INSERT INTO `diagnosis` (`idDiagnosis`, `idPemeriksaan`, `tanggal`, `saran`, `idDokter`) VALUES
+(1, 1, '2016-12-13 23:07:50', 'Makan rumput. Jangan makan kaca.', 2),
+(2, 2, '2016-12-13 23:28:15', 'tralalala trillililili', 2);
 
 -- --------------------------------------------------------
 
@@ -119,7 +110,7 @@ INSERT INTO `diagnosis` (`idDiagnosis`, `idPenyakit`, `idPemeriksaan`, `idSapi`,
 
 CREATE TABLE `gejalapenyakit` (
   `idGejala` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `idKategori` int(1) NOT NULL,
+  `idKategoriGejala` int(1) NOT NULL,
   `gejala` varchar(40) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -127,7 +118,7 @@ CREATE TABLE `gejalapenyakit` (
 -- Dumping data for table `gejalapenyakit`
 --
 
-INSERT INTO `gejalapenyakit` (`idGejala`, `idKategori`, `gejala`) VALUES
+INSERT INTO `gejalapenyakit` (`idGejala`, `idKategoriGejala`, `gejala`) VALUES
 ('G01', 6, 'Suhu Badan tinggi'),
 ('G02', 4, 'Diare'),
 ('G03', 3, 'Bintik hitam pada pori-pori'),
@@ -245,24 +236,23 @@ INSERT INTO `kategorigejala` (`idKategoriGejala`, `kategoriGejala`) VALUES
 CREATE TABLE `kombinasi` (
   `idKombinasi` int(11) NOT NULL,
   `idPenyakit` varchar(255) NOT NULL,
-  `kombinasi` varchar(255) NOT NULL,
-  `persentase` int(2) NOT NULL
+  `kombinasi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kombinasi`
 --
 
-INSERT INTO `kombinasi` (`idKombinasi`, `idPenyakit`, `kombinasi`, `persentase`) VALUES
-(1, 'P1', 'G01G02G03G04G05', 0),
-(2, 'P2', 'G06G07G08G09G10', 0),
-(3, 'P3', 'G02G04G11G12G13', 0),
-(4, 'P4', 'G01G04G14G15G16G17G18G19G20', 0),
-(5, 'P5', 'G01G04G15G20G21G22G23', 0),
-(6, 'P6', 'G01G04G11G14G20G24G25G26G27', 0),
-(7, 'P7', 'G01G07G11G18G24G28G29', 0),
-(8, 'P8', 'G04G30G31G32', 0),
-(9, 'P9', 'G25G33G34G35', 0);
+INSERT INTO `kombinasi` (`idKombinasi`, `idPenyakit`, `kombinasi`) VALUES
+(1, 'P1', 'G01,G02,G03,G04,G05'),
+(2, 'P2', 'G06,G07,G08,G09,G10'),
+(3, 'P3', 'G02,G04,G11,G12,G13'),
+(4, 'P4', 'G01,G04,G14,G15,G16,G17,G18,G19,G20'),
+(5, 'P5', 'G01,G04,G15,G20,G21,G22,G23'),
+(6, 'P6', 'G01,G04,G11,G14,G20,G24,G25,G26,G27'),
+(7, 'P7', 'G01,G07,G11,G18,G24,G28,G29'),
+(8, 'P8', 'G04,G30,G31,G32'),
+(9, 'P9', 'G25,G33,G34,G35');
 
 -- --------------------------------------------------------
 
@@ -328,10 +318,18 @@ CREATE TABLE `pemeriksaan` (
   `idPemeriksaan` int(11) NOT NULL,
   `idSapi` varchar(255) NOT NULL,
   `gejala` varchar(255) NOT NULL,
-  `tanggal` date NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idUser` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemeriksaan`
+--
+
+INSERT INTO `pemeriksaan` (`idPemeriksaan`, `idSapi`, `gejala`, `tanggal`, `idUser`, `status`) VALUES
+(1, '2', 'G14,G15,G16,G29,G10,G19,G05,G18,G26,G31,G33,G27', '2016-12-13 21:49:11', '3', 1),
+(2, '3', 'G15,G04,G02,G12,G01', '2016-12-13 23:26:49', '3', 1);
 
 -- --------------------------------------------------------
 
@@ -432,11 +430,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mohammad Alviansyah', 'Alvian', 'adsasa@mail.com', '$2y$10$m09HH0wgd2iNK1F78/ZmS..3rI/h0G4xDRJ/TShWRdkvOi6P7ie0K', 0, '1BRMDHQoJ3EfRmmty0sQa5QK9J0wD798WEz9WEX7iNlSZdP3JllgC28cRKgW', '2016-11-20 04:24:30', '2016-12-11 12:00:27'),
-(2, 'Nurul Aeini', 'Nurul', 'nurul@mail.com', '$2y$10$nSJ0ep5v0o8vhnjmZ3kMHuYhTJhizC9d67f8z41UQ/Oa1ukSSF/v2', 2, 'Sz4uOenOq35N8qqqWjFbKfh9x2he8Og8fe2ovgUXbaIdKcmbQbg0qOSLmNoT', '2016-11-19 22:48:41', '2016-12-11 11:53:36'),
-(3, 'Ahmad Dwi Jayanto', 'Ahmad', 'ahmad@mail.com', '$2y$10$jiwWgeoXzURkScGTGA6gce9Duu2o5wQLsSSsiCALpTSZ5EyUnxA6q', 3, 'H3ViHGpvSsqfB5Ylc9Tiyp8q0b7OiOMOWLjx3xDYcNZtg0zHw9xbnJaXefwn', '2016-11-27 12:41:54', '2016-12-11 12:01:46'),
-(4, 'Milzammah Ilvi Laily', 'Ilvi', 'ilvi.laily@mail.com', '$2y$10$RHH9EQ6jg4Tj/hSmBtkZyOoJq41y4LpO92g/w/4jQMjQEXZZnglZ6', 1, 'LV38oJBnwEgpbPwxp90u0gGa8x6ToLv2wLbAwgTCYRYdjKGuVXAQ7ThdLDnk', '2016-12-11 01:47:07', '2016-12-11 12:27:17'),
-(5, 'Rozha Aulya', 'Rozha', 'rozha@mail.com', '$2y$10$YDwAGmUCvUDvNnNmE1akFep0lzS9CdF6NkR2ChJTG38iD0DgXAM72', 2, 'RUPnZtVPSlyBJCeYSt4Tnh3FprkF1rqX7sbSzLxukMlYKVmsa9FKDlqtaTuR', '2016-12-11 01:50:56', '2016-12-11 09:56:42');
+(1, 'Mohammad Alviansyah', 'Alvian', 'adsasa@mail.com', '$2y$10$m09HH0wgd2iNK1F78/ZmS..3rI/h0G4xDRJ/TShWRdkvOi6P7ie0K', 0, 'VW7lqP4FwniGCxxz2bM9wdJfwzg9k018AtTlw9kCOOe8bPciWzL2KhQndc1Z', '2016-11-20 04:24:30', '2016-12-12 09:50:27'),
+(2, 'Nurul Aeini', 'Nurul', 'nurul@mail.com', '$2y$10$nSJ0ep5v0o8vhnjmZ3kMHuYhTJhizC9d67f8z41UQ/Oa1ukSSF/v2', 2, 'SVtOxx6pIs1QeL6iCn5olIXsiaChk4QvbPp97skMthVXYdTfAVjtcX9w7fGn', '2016-11-19 22:48:41', '2016-12-13 09:28:30'),
+(3, 'Ahmad Dwi Jayanto', 'Ahmad', 'ahmad@mail.com', '$2y$10$jiwWgeoXzURkScGTGA6gce9Duu2o5wQLsSSsiCALpTSZ5EyUnxA6q', 3, 'kvneIb2NIDfkrbiQDPa1CUM4VFnch2gy4TFGwZ7AXftxITny3SZ00Zp1prL4', '2016-11-27 12:41:54', '2016-12-13 09:27:18'),
+(4, 'Milzammah Ilvi Laily', 'Ilvi', 'ilvi.laily@mail.com', '$2y$10$RHH9EQ6jg4Tj/hSmBtkZyOoJq41y4LpO92g/w/4jQMjQEXZZnglZ6', 1, 'xhawJ3e19aSbqlak5AuTNA0eYQdn32S4yIeuAqLtUODM8CALHryyhZYhH1IP', '2016-12-11 01:47:07', '2016-12-13 09:28:54'),
+(5, 'Rozha Aulya', 'Rozha', 'rozha@mail.com', '$2y$10$YDwAGmUCvUDvNnNmE1akFep0lzS9CdF6NkR2ChJTG38iD0DgXAM72', 2, 'KGmDFP2V6mJ7XBLKLxrG9vLl5Fe4Qa2VdjCaoEhVQcMP2C1PdsEywRBK7Mnl', '2016-12-11 01:50:56', '2016-12-13 03:15:41');
 
 --
 -- Indexes for dumped tables
@@ -464,10 +462,7 @@ ALTER TABLE `datasapi`
 --
 ALTER TABLE `diagnosis`
   ADD PRIMARY KEY (`idDiagnosis`),
-  ADD UNIQUE KEY `diagnosispenyakit_iddiagnosis_unique` (`idDiagnosis`),
-  ADD KEY `idPenyakit` (`idPenyakit`),
-  ADD KEY `idSapi` (`idSapi`),
-  ADD KEY `idkombinasi` (`idkombinasi`);
+  ADD UNIQUE KEY `diagnosispenyakit_iddiagnosis_unique` (`idDiagnosis`);
 
 --
 -- Indexes for table `gejalapenyakit`
@@ -551,6 +546,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `diagnosis`
+--
+ALTER TABLE `diagnosis`
+  MODIFY `idDiagnosis` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `kategorigejala`
 --
 ALTER TABLE `kategorigejala`
@@ -560,6 +560,11 @@ ALTER TABLE `kategorigejala`
 --
 ALTER TABLE `kombinasi`
   MODIFY `idKombinasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `pemeriksaan`
+--
+ALTER TABLE `pemeriksaan`
+  MODIFY `idPemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `statussapi`
 --

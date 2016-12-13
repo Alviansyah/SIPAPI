@@ -18,6 +18,7 @@
                         <th data-field="idPemeriksaan">ID Pemeriksaan</th>
                         <th data-field="idSapi">ID Sapi</th>
                         <th data-field="tanggal">Tanggal</th>
+                        <th data-field="dokter">Dokter</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,7 @@
                             <td>{{ $diagnosis->idPemeriksaan }}</td>
                             <td>{{ $diagnosis->idSapi }}</td>
                             <td>{{ $diagnosis->tanggal }}</td>
+                            <td>{{ $diagnosis->dokter }}</td>
                             <td>
                                 <a class="tooltipped hide-on-med-and-down" data-position="right" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$diagnosis->idSapi}}"><i class="small material-icons">visibility</i></a>
                                 <a class="tooltipped hide-on-large-only" data-position="bottom" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$diagnosis->idSapi}}"><i class="small material-icons">visibility</i></a>

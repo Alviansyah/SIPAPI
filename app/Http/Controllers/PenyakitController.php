@@ -160,8 +160,11 @@ class PenyakitController extends Controller
             $num_exists++;
           }
         }
-        $prediksi_penyakit = (($num_exists/$numkombinasi)*100);
-        $PREDIKSI[] = ['Penyakit' => $penyakitDB[$i], 'prediksi' => $prediksi_penyakit];
+        if ($num_exists >1 ) {
+          $prediksi_penyakit = (($num_exists/$numkombinasi)*100);
+          $prediksi_penyakit = number_format($prediksi_penyakit, 2);
+          $PREDIKSI[] = ['Penyakit' => $penyakitDB[$i], 'prediksi' => $prediksi_penyakit];
+        }
       }
 
       return $PREDIKSI;
