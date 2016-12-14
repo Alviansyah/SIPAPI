@@ -38,6 +38,7 @@
                               <th data-field="usia">Usia</th>
                               <th data-field="tinggi">Tinggi</th>
                               <th data-field="bobot">Bobot</th>
+                              <th data-field="status">Status</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -49,6 +50,7 @@
                               <td>{{ $sapi->usia }} tahun</td>
                               <td>{{ $sapi->tinggi }} cm</td>
                               <td>{{ $sapi->bobot }} kg</td>
+                              <td>{{ $sapi->status }}</td>
                               <td>
                                   <a class="tooltipped hide-on-med-and-down" data-position="right" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$sapi->idSapi}}"><i class="small material-icons">visibility</i></a>
                                   <a class="tooltipped hide-on-large-only" data-position="bottom" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$sapi->idSapi}}"><i class="small material-icons">visibility</i></a>

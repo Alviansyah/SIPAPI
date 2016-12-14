@@ -15,7 +15,7 @@ class MedisController extends Controller
     }
 
     public function showRekamMedisView() {
-        $data['diagnosis'] = DiagnosisModel::join('penyakit','diagnosispenyakit.idPenyakit','=','penyakit.idPenyakit')->select('diagnosispenyakit.idDiagnosis','diagnosispenyakit.idSapi','penyakit.namaPenyakit','diagnosispenyakit.saran')->get();
+        $data['medis'] = DiagnosisModel::join('penyakit','diagnosispenyakit.idPenyakit','=','penyakit.idPenyakit')->select('diagnosispenyakit.idDiagnosis','diagnosispenyakit.idSapi','penyakit.namaPenyakit','diagnosispenyakit.saran')->get();
         return view('pages.medis.rekammedis', $data);
     }
 

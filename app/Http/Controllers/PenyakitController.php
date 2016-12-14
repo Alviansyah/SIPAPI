@@ -99,7 +99,6 @@ class PenyakitController extends Controller
       $gejala = $this->getGejalaData($datagejala);
       $kombinasigejala = $this->getKombinasiPenyakit($datagejala);
       $prediksi = $this->hitungPrediksiPenyakit($datagejala, $kombinasigejala);
-      // dd($datadiagnosis);
       return response()->view('pages.penyakit.detaildiagnosis', compact('datadiagnosis', 'gejala', 'prediksi'));
     }
 

@@ -11,7 +11,6 @@
 |
 */
 
-//Route::get('/', function () { return view('auth.login'); });
 // Autentikasi
 //      Login
 Route::get('/login','Auth\LoginController@showLoginForm');

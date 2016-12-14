@@ -15,7 +15,7 @@ class SapiController extends Controller
     }
 
     public function showSapiView(){
-        $data['data'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->select('datasapi.*','kategori.kategori')->where('arsip', 0)->get();
+        $data['data'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->join('statussapi', 'datasapi.idstatussapi', 'statussapi.idstatussapi')->select('datasapi.*','kategori.kategori', 'statussapi.status')->where('arsip', 0)->get();
         return response()->view('pages.sapi.datasapi', $data);
     }
 
@@ -36,7 +36,7 @@ class SapiController extends Controller
     }
 
     public function viewDataSapi($id) {
-        $data['sapi'] = SapiModel::find($id);
+        $data['sapi'] = SapiModel::join('kategori','datasapi.idKategori','kategori.idKategori')->join('statussapi', 'datasapi.idstatussapi', 'statussapi.idstatussapi')->find($id);
         return response()->view('pages.sapi.detailsapi', $data);
     }
 

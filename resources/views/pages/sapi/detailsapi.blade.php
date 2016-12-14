@@ -21,12 +21,12 @@
                             </div>
                             <div class="row">
                                 <div class="col s12 m12 l12">
-                                    Kategori : {{ $sapi->idKategori or 'Empty'}}
+                                    Kategori : {{ $sapi->kategori or 'Empty'}}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12 m12 l12">
-                                    Jenis Kelamin : {{ $sapi->jenisKelamin or 'Empty'}}
+                                    Jenis Kelamin : {{ (($sapi->jenisKelamin == 1) ? 'Jantan' : 'Betina') }}
                                 </div>
                             </div>
                             <div class="row">
@@ -42,6 +42,11 @@
                             <div class="row">
                                 <div class="col s12 m12 l12">
                                     Bobot : {{ $sapi->bobot or 'Empty'}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m12 l12">
+                                    Bobot : {{ $sapi->status or 'Empty'}}
                                 </div>
                             </div>
                         </div>
