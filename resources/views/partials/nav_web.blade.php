@@ -16,7 +16,7 @@
         <a href="#" class="dropdown-button" data-activates="penyakit" data-beloworigin="true" style="width: 130px !important;"><center>Penyakit</center></a>
         <ul id="penyakit" class="dropdown-content">
             <li><a href="/pemeriksaan">Pemeriksaan</a></li>
-            <li><a href="/diagnosisproses">Diagnosis</a></li>
+            <li><a href="/diagnosis">Diagnosis</a></li>
             @if ($user->level == 0 || $user->level == 2)<li><a href="/daftarpenyakit">Daftar Penyakit</a></li>@endif
         </ul>
     </li>
@@ -32,9 +32,9 @@
   @endif
     <li class="right-align">
         <a href="#" class="dropdown-button" data-activates="account" data-beloworigin="true" style="width: 250px !important;font-size: 20px !important;">{{ $user->username }}</a>
-        <ul class="dropdown-content image" id="account" style="background: url('{{ asset('img/userImg.jpg') }}');margin-right: 100px !important;">
-            <a class="name-web disabled">{{ $user->name }}</a>
-            <a class="email-web" href="#">{{ $user->email }}</a>
+        <ul class="dropdown-content image" id="account" style="background: url('{{ asset('img/'.$user->username.'.jpg') }}');margin-right: 100px !important;">
+            <a class="name-web disabled truncate">{{ $user->name }}</a>
+            <a class="email-web truncate" href="#">{{ $user->email }}</a>
             <a class="logout-web" href="{{ url('/logout') }}"><b>Logout</b></a>
         </ul>
     </li>

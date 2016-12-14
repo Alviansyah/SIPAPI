@@ -44,6 +44,8 @@ Route::get('/jadwalpakan','SapiController@showJadwalPakanView');
 Route::get('/pemeriksaan','PenyakitController@showPemeriksaanView');
 Route::post('/tambahpemeriksaan','PenyakitController@tambahEntryPemeriksaan');
 //      Diagnosis
+Route::get('/diagnosis','PenyakitController@showDiagnosisView');
+Route::get('/diagnosisdetail/{id}','PenyakitController@viewDetailDiagnosis');
 Route::get('/analisis/{id}','PenyakitController@analisisDataPemeriksaan');
 Route::post('/tambahDiagnosis','PenyakitController@tambahDiagnosis');
 //      Daftar Penyakit

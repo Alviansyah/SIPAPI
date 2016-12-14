@@ -61,8 +61,14 @@ class PenyakitController extends Controller
     }
 
     public function tambahEntryPemeriksaan(Request $request){
-      $gejala = implode(',',$request->get('gejala'));
-
+      $input = Validator::make($request->all(), [
+        'idSapi' => 'required',
+        'gejala' => 'required'
+      ]);
+      if ($input->fails()){
+          return back()->withErrors($input)->withInput();
+      }
+      $gejala = implode(',', $request->get('gejala'));
       $data = new PemeriksaanModel();
       $data->idSapi = $request->get('idSapi');
       $data->gejala = $gejala;
@@ -79,12 +85,22 @@ class PenyakitController extends Controller
       $gejala = $this->getGejalaData($datagejala);
       $kombinasigejala = $this->getKombinasiPenyakit($datagejala);
       $prediksi = $this->hitungPrediksiPenyakit($datagejala, $kombinasigejala);
-      return response()->view('pages.penyakit.analisis', compact('dataset', 'gejala', 'prediksi', 'datapenyakitDB'));
+      return response()->view('pages.penyakit.analisis', compact('dataset', 'gejala', 'prediksi'));
     }
 
     public function showDiagnosisView(){
-        $data['diagnosis'] = Diagnosis::all();
-        return response()->view('pages.penyakit.diagnosis', $data);
+      $data['data'] = DiagnosisModel::join('users', 'diagnosis.idDokter', 'users.id')->join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->select('diagnosis.*', 'users.name as dokter', 'pemeriksaan.idSapi')->get();
+      return response()->view('pages.penyakit.diagnosis', $data);
+    }
+
+    public function viewDetailDiagnosis($id){
+      $datadiagnosis = DiagnosisModel::join('users', 'diagnosis.idDokter', 'users.id')->join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->where('idDiagnosis', $id)->select('diagnosis.*', 'users.name as dokter', 'pemeriksaan.*')->first();
+      $datagejala = explode(',', $datadiagnosis->gejala);
+      $gejala = $this->getGejalaData($datagejala);
+      $kombinasigejala = $this->getKombinasiPenyakit($datagejala);
+      $prediksi = $this->hitungPrediksiPenyakit($datagejala, $kombinasigejala);
+      // dd($datadiagnosis);
+      return response()->view('pages.penyakit.detaildiagnosis', compact('datadiagnosis', 'gejala', 'prediksi'));
     }
 
     public function tambahDiagnosis(Request $request){

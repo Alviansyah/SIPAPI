@@ -6,10 +6,10 @@
         <div class="userView"><img class="background responsive-img" src="{!! asset('img/userViewBg.jpg') !!}"
                                    alt="BackgroundImage">
             <a class="left" href="#" style="padding-right: 20px !important;"><img
-                        class="right circle responsive-img" src="{!! asset('img/userImg.jpg') !!}" alt="UserImg"
+                        class="right circle responsive-img" src="{!! asset('img/'.$user->username.'.jpg') !!}" alt="UserImg"
                         style="width: 55% !important; height: 55% !important;"></a>
             <a href="#"><span class="white-text name"
-                              style="font-size: 20px !important;">{{ $user->name }}</span></a>
+                              style="font-size: 1 em !important;">{{ $user->name }}</span></a>
             <a href="#"><span class="white-text email"
                               style="font-size: 12px !important;padding-bottom: 5px !important;"><u>{{ $user->email }}</u></span></a>
         </div>
@@ -40,7 +40,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <li><a class="waves-effect waves-yellow" href="/pemeriksaan">Pemeriksaan</a></li>
-                        <li><a class="waves-effect waves-yellow" href="/diagnosisproses">Diagnosis</a></li>
+                        <li><a class="waves-effect waves-yellow" href="/diagnosis">Diagnosis</a></li>
                         @if ($user->level == 0 || $user->level == 2)<li><a class="waves-effect waves-yellow" href="/daftarpenyakit">Daftar Penyakit</a></li>@endif
                     </ul>
                 </div>

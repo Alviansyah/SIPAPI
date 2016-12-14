@@ -10,7 +10,7 @@
   </div>
   <div class="row no-margin-bottom">
     <div class="col s12 m6 l6">
-      <h5 class="left">ID Sapi : {{ $dataset['idSapi'] }}</h6><br>
+      <h5 class="left">ID Sapi : {{ $dataset['idSapi'] }}</h6>
     </div>
     <div class="col s12 m6 l6">
       <h6 class="right">Petugas : {{ $dataset['petugas'] }}</h6>

@@ -67,7 +67,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m4 l4">
+                    <div class="col s12">
+                      <a class="waves-effect waves-light btn" href="/sapi">Batal</a>
                         <button class="btn waves-effect waves-light" type="submit" name="btn_simpan">Simpan
                             <i class="material-icons right">send</i>
                         </button>

@@ -29,20 +29,14 @@
                             <td>{{ $diagnosis->tanggal }}</td>
                             <td>{{ $diagnosis->dokter }}</td>
                             <td>
-                                <a class="tooltipped hide-on-med-and-down" data-position="right" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$diagnosis->idSapi}}"><i class="small material-icons">visibility</i></a>
-                                <a class="tooltipped hide-on-large-only" data-position="bottom" data-delay="50" data-tooltip="Lihat" href="/sapidetail/{{$diagnosis->idSapi}}"><i class="small material-icons">visibility</i></a>
+                                <a class="tooltipped hide-on-med-and-down" data-position="right" data-delay="50" data-tooltip="Lihat" href="/diagnosisdetail/{{$diagnosis->idDiagnosis}}"><i class="small material-icons">visibility</i></a>
+                                <a class="tooltipped hide-on-large-only" data-position="bottom" data-delay="50" data-tooltip="Lihat" href="/diagnosisdetail/{{$diagnosis->idDiagnosis}}"><i class="small material-icons">visibility</i></a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <textarea id="hasil" name="hasil" class="materialize-textarea black-text" disabled>{{ $hasil or '' }}</textarea>
-            <label for="hasil" class="black-text">Hasil Analisis</label>
         </div>
     </div>
 @endsection

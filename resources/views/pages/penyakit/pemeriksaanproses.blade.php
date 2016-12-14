@@ -19,6 +19,11 @@
               {!! csrf_field() !!}
               <div class="row">
                 <div class="col s12 m5 l4">
+                  @if ($errors->first('idSapi'))
+                    <div class="chip red lighten-2 black-text">
+                      ID Sapi harus dipilih. <i class="material-icons close">close</i>
+                    </div>
+                  @endif
                   <label>ID Sapi</label>
                   <select class="browser-default" name="idSapi">
                     <option value="" disabled selected>Pilih ID Sapi</option>
@@ -29,6 +34,11 @@
                 </div>
               </div>
               <div class="divider lower-a-bit"></div>
+              @if ($errors->first('gejala'))
+                <div class="chip red lighten-2 black-text">
+                  Pilih minimal satu gejala. <i class="material-icons close">close</i>
+                </div>
+              @endif
               @for ($i = 0; $i < count($gejaladata); $i++)
               <div class="section">
                 <h5>{{ $gejaladata[$i]['kategori'] }}</h5>
