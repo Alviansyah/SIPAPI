@@ -7,7 +7,6 @@
             @if ($user->level == 0 || $user->level == 3)<li><a href="/sapi">Identitas Sapi</a></li>@endif
             @if ($user->level == 0 || $user->level == 2)<li><a href="/medis">Rekam Medis</a></li>@endif
             @if ($user->level == 0 || $user->level == 3)<li><a href="/jadwalpakan">Jadwal Pakan</a></li>@endif
-            @if ($user->level == 0 || $user->level == 3)<li><a href="#">Stok Sapi</a></li>@endif
         </ul>
     </li>
   @endif
@@ -23,11 +22,7 @@
   @endif
   @if ($user->level == 0 || $user->level == 1)
     <li>
-        <a href="#" class="dropdown-button" data-activates="laporan" data-beloworigin="true" style="width: 130px !important;"><center>Laporan</center></a>
-        <ul id="laporan" class="dropdown-content">
-            <li><a href="#">Pemeliharaan</a></li>
-            <li><a href="#">Stok Sapi</a></li>
-        </ul>
+        <a href="/medis" style="width: 130px !important;"><center>Laporan</center></a>
     </li>
   @endif
     <li class="right-align">

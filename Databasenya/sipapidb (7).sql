@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2016 at 06:06 PM
+-- Generation Time: Dec 14, 2016 at 07:34 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -69,16 +69,16 @@ CREATE TABLE `datasapi` (
 --
 
 INSERT INTO `datasapi` (`idSapi`, `idKategori`, `jenisKelamin`, `usia`, `tinggi`, `bobot`, `idstatussapi`, `arsip`) VALUES
-('1', '1', '1', '2', '2', '300', 0, 1),
-('2', '1', '1', '3', '1', '200', 0, 0),
-('3', '2', '1', '1', '1', '100', 0, 0),
-('4', '3', '1', '5', '3', '255', 0, 0),
-('5', '4', '1', '7', '4', '300', 0, 0),
-('6', '1', '2', '7', '5', '400', 0, 0),
-('7', '1', '1', '5', '3', '350', 0, 0),
-('8', '2', '2', '9', '6', '500', 0, 0),
-('9', '3', '2', '11', '7', '500', 0, 0),
-('BFL457', '2', '1', '3', '120', '75', 0, 1);
+('1', '1', '1', '2', '2', '300', 1, 1),
+('2', '1', '1', '3', '1', '200', 2, 0),
+('3', '2', '1', '1', '170', '100', 1, 0),
+('4', '3', '1', '5', '3', '255', 1, 0),
+('5', '4', '1', '7', '4', '300', 1, 0),
+('6', '1', '2', '7', '5', '400', 1, 0),
+('7', '1', '1', '5', '3', '350', 1, 0),
+('8', '2', '2', '9', '6', '500', 1, 0),
+('9', '3', '2', '11', '7', '500', 1, 0),
+('BFL457', '2', '1', '3', '120', '75', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE `diagnosis` (
 --
 
 INSERT INTO `diagnosis` (`idDiagnosis`, `idPemeriksaan`, `tanggal`, `saran`, `idDokter`) VALUES
-(1, 1, '2016-12-13 23:07:50', 'Makan rumput. Jangan makan kaca.', 2),
+(1, 1, '2016-12-13 23:07:50', 'Kasih makan rumput. Jangan dikasih makan kaca.', 2),
 (2, 2, '2016-12-13 23:28:15', 'tralalala trillililili', 2);
 
 -- --------------------------------------------------------
@@ -329,7 +329,8 @@ CREATE TABLE `pemeriksaan` (
 
 INSERT INTO `pemeriksaan` (`idPemeriksaan`, `idSapi`, `gejala`, `tanggal`, `idUser`, `status`) VALUES
 (1, '2', 'G14,G15,G16,G29,G10,G19,G05,G18,G26,G31,G33,G27', '2016-12-13 21:49:11', '3', 1),
-(2, '3', 'G15,G04,G02,G12,G01', '2016-12-13 23:26:49', '3', 1);
+(2, '3', 'G15,G04,G02,G12,G01', '2016-12-13 23:26:49', '3', 1),
+(3, '6', 'G14,G15,G22,G10,G19,G24,G33,G35', '2016-12-14 01:02:47', '3', 0);
 
 -- --------------------------------------------------------
 
@@ -375,8 +376,7 @@ CREATE TABLE `statussapi` (
 
 INSERT INTO `statussapi` (`idstatussapi`, `status`) VALUES
 (1, 'sehat'),
-(2, 'sakit'),
-(3, 'laktasi');
+(2, 'sakit');
 
 -- --------------------------------------------------------
 
@@ -385,7 +385,7 @@ INSERT INTO `statussapi` (`idstatussapi`, `status`) VALUES
 --
 
 CREATE TABLE `stoksapi` (
-  `idStok` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `idStok` int(11) NOT NULL,
   `jumlahStok` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `terjual` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `mati` varchar(2) COLLATE utf8_unicode_ci NOT NULL
@@ -396,16 +396,16 @@ CREATE TABLE `stoksapi` (
 --
 
 INSERT INTO `stoksapi` (`idStok`, `jumlahStok`, `terjual`, `mati`) VALUES
-('1', '20', '10', '2'),
-('10', '22', '6', '3'),
-('2', '40', '5', '1'),
-('3', '20', '3', '1'),
-('4', '30', '4', '2'),
-('5', '40', '1', '0'),
-('6', '40', '2', '1'),
-('7', '10', '3', '4'),
-('8', '40', '1', '1'),
-('9', '33', '2', '2');
+(1, '20', '10', '2'),
+(2, '40', '5', '1'),
+(3, '20', '3', '1'),
+(4, '30', '4', '2'),
+(5, '40', '1', '0'),
+(6, '40', '2', '1'),
+(7, '10', '3', '4'),
+(8, '40', '1', '1'),
+(9, '33', '2', '2'),
+(10, '22', '6', '3');
 
 -- --------------------------------------------------------
 
@@ -430,11 +430,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mohammad Alviansyah', 'Alvian', 'adsasa@mail.com', '$2y$10$m09HH0wgd2iNK1F78/ZmS..3rI/h0G4xDRJ/TShWRdkvOi6P7ie0K', 0, 'VW7lqP4FwniGCxxz2bM9wdJfwzg9k018AtTlw9kCOOe8bPciWzL2KhQndc1Z', '2016-11-20 04:24:30', '2016-12-12 09:50:27'),
-(2, 'Nurul Aeini', 'Nurul', 'nurul@mail.com', '$2y$10$nSJ0ep5v0o8vhnjmZ3kMHuYhTJhizC9d67f8z41UQ/Oa1ukSSF/v2', 2, 'SVtOxx6pIs1QeL6iCn5olIXsiaChk4QvbPp97skMthVXYdTfAVjtcX9w7fGn', '2016-11-19 22:48:41', '2016-12-13 09:28:30'),
-(3, 'Ahmad Dwi Jayanto', 'Ahmad', 'ahmad@mail.com', '$2y$10$jiwWgeoXzURkScGTGA6gce9Duu2o5wQLsSSsiCALpTSZ5EyUnxA6q', 3, 'kvneIb2NIDfkrbiQDPa1CUM4VFnch2gy4TFGwZ7AXftxITny3SZ00Zp1prL4', '2016-11-27 12:41:54', '2016-12-13 09:27:18'),
-(4, 'Milzammah Ilvi Laily', 'Ilvi', 'ilvi.laily@mail.com', '$2y$10$RHH9EQ6jg4Tj/hSmBtkZyOoJq41y4LpO92g/w/4jQMjQEXZZnglZ6', 1, 'xhawJ3e19aSbqlak5AuTNA0eYQdn32S4yIeuAqLtUODM8CALHryyhZYhH1IP', '2016-12-11 01:47:07', '2016-12-13 09:28:54'),
-(5, 'Rozha Aulya', 'Rozha', 'rozha@mail.com', '$2y$10$YDwAGmUCvUDvNnNmE1akFep0lzS9CdF6NkR2ChJTG38iD0DgXAM72', 2, 'KGmDFP2V6mJ7XBLKLxrG9vLl5Fe4Qa2VdjCaoEhVQcMP2C1PdsEywRBK7Mnl', '2016-12-11 01:50:56', '2016-12-13 03:15:41');
+(1, 'Prof. Dr. Mohammad Alviansyah, G.Force', 'Alvian', 'adsasa@mail.com', '$2y$10$m09HH0wgd2iNK1F78/ZmS..3rI/h0G4xDRJ/TShWRdkvOi6P7ie0K', 0, 't3gnwjDeSaVa7DEdPKmhkmqZxVCNcbeQODD8DvkUZtBWOI9iyxobqlBNgkj9', '2016-11-20 04:24:30', '2016-12-13 21:54:38'),
+(2, 'dr. Nurul Aeini, AMD', 'Nurul', 'nurul@mail.com', '$2y$10$nSJ0ep5v0o8vhnjmZ3kMHuYhTJhizC9d67f8z41UQ/Oa1ukSSF/v2', 2, 'pbLaKr61LTvh8IY3dj0nxAnWmk9gfEzFTa1xYj7nLU3zQwxNTYNcBsseCukM', '2016-11-19 22:48:41', '2016-12-13 21:05:55'),
+(3, 'Dr. Ahmad Dwi Jayanto, MSI', 'Ahmad', 'ahmad@mail.com', '$2y$10$jiwWgeoXzURkScGTGA6gce9Duu2o5wQLsSSsiCALpTSZ5EyUnxA6q', 3, 'ZYO0zexSYb0bpAM2GRUZM1bdgf4kRnohlvpgTdXJnraRdC2nn0RNKNWqYRfV', '2016-11-27 12:41:54', '2016-12-13 22:45:25'),
+(4, 'Ir. Milzammah Ilvi Laily, N.vidia', 'Ilvi', 'ilvi.laily@mail.com', '$2y$10$RHH9EQ6jg4Tj/hSmBtkZyOoJq41y4LpO92g/w/4jQMjQEXZZnglZ6', 1, 'B2NReJjTvGtfXuJcF2W0Emr222QC1x6PmDEcxWDeoCgJ2vuuf2dC2GOvX94U', '2016-12-11 01:47:07', '2016-12-13 23:25:48'),
+(5, 'dr. Rozha Aulya, ATI', 'Rozha', 'rozha@mail.com', '$2y$10$YDwAGmUCvUDvNnNmE1akFep0lzS9CdF6NkR2ChJTG38iD0DgXAM72', 2, 'xtMzjm7JSScYqZvIUZKQwccFA2X8wBdbXoJ3wxNYAkA9IKDy6eCryDD2zimA', '2016-12-11 01:50:56', '2016-12-13 23:13:10');
 
 --
 -- Indexes for dumped tables
@@ -564,12 +564,17 @@ ALTER TABLE `kombinasi`
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `idPemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `statussapi`
 --
 ALTER TABLE `statussapi`
   MODIFY `idstatussapi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `stoksapi`
+--
+ALTER TABLE `stoksapi`
+  MODIFY `idStok` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `users`
 --

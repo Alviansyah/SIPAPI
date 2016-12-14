@@ -50,19 +50,19 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="usia" type="text" class="validate" name="usia" value="{{ $sapi->usia or '' }}" required>
+                        <input id="usia" type="number" min="0" class="validate" name="usia" value="{{ $sapi->usia or '' }}" required>
                         <label for="usia">Usia</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="tinggi" type="text" class="validate" name="tinggi" value="{{ $sapi->tinggi or '' }}" required>
+                        <input id="tinggi" type="number" min="0" class="validate" name="tinggi" value="{{ $sapi->tinggi or '' }}" required>
                         <label for="tinggi">Tinggi</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="bobot" type="text" class="validate" name="bobot" value="{{ $sapi->bobot or '' }}" required>
+                        <input id="bobot" type="number" min="0" class="validate" name="bobot" value="{{ $sapi->bobot or '' }}" required>
                         <label for="bobot">bobot</label>
                     </div>
                 </div>

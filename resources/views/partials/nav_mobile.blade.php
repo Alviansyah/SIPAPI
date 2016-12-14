@@ -26,7 +26,6 @@
                         @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="/sapi">Identitas Sapi</a></li>@endif
                         @if ($user->level == 0 || $user->level == 2)<li><a class="waves-effect waves-yellow" href="/medis">Rekam Medis</a></li>@endif
                         @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="/jadwalpakan">Jadwal Pakan</a></li>@endif
-                        @if ($user->level == 0 || $user->level == 3)<li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>@endif
                     </ul>
                 </div>
             </li>
@@ -49,18 +48,7 @@
     </li>
     @endif
     @if ($user->level == 0 || $user->level == 1)
-    <li class="no-padding">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li><a class="collapsible-header waves-effect waves-red">Laporan</a>
-                <div class="collapsible-body">
-                    <ul>
-                        <li><a class="waves-effect waves-yellow" href="#">Pemeliharaan</a></li>
-                        <li><a class="waves-effect waves-yellow" href="#">Stok Sapi</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
+    <li><a class="waves-effect waves-yellow" href="/medis">Laporan</a></li>
     @endif
     <li>
         <div class="divider"></div>

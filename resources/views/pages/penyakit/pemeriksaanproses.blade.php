@@ -52,7 +52,7 @@
               <div class="divider"></div>
               @endfor
               <br>
-              <button class="btn waves-effect waves-light" type="submit" name="action">Tambah Entry Pemeriksaan<i class="material-icons right">send</i></button>
+              <button class="btn waves-effect waves-light" type="submit" name="action">Kirim<i class="material-icons right">send</i></button>
             </form>
         </div>
     </div>

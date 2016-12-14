@@ -50,8 +50,8 @@ class PenyakitController extends Controller
           return response()->view('pages.penyakit.pemeriksaanproses', compact('gejaladata', 'sapidata'));
           break;
         case 2:
-          $data['data'] = PemeriksaanModel::join('users','pemeriksaan.idUser','users.id')->where('status', 0)->select('pemeriksaan.*', 'users.name as petugas')->get();
-          return response()->view('pages.penyakit.pemeriksaan', $data);
+          $data = PemeriksaanModel::join('users','pemeriksaan.idUser','users.id')->where('status', 0)->select('pemeriksaan.*', 'users.name as petugas')->get();
+          return response()->view('pages.penyakit.pemeriksaan', compact('data'));
           break;
         default:
           session()->flash('ERROR', 'gak ada data level terambil.');
@@ -74,7 +74,8 @@ class PenyakitController extends Controller
       $data->gejala = $gejala;
       $data->idUser = Auth::user()->id;
       $data->save();
-      $request->session()->flash('message','Entry pemeriksaan ID Sapi '.$request->get('idSapi').' ditambahkan.');
+      SapiModel::where('idSapi', $id)->update(['idstatussapi' => 2]);
+      $request->session()->flash('message','Data berhasil dikirim.');
       return redirect('/pemeriksaan');
     }
 
@@ -89,7 +90,7 @@ class PenyakitController extends Controller
     }
 
     public function showDiagnosisView(){
-      $data['data'] = DiagnosisModel::join('users', 'diagnosis.idDokter', 'users.id')->join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->select('diagnosis.*', 'users.name as dokter', 'pemeriksaan.idSapi')->get();
+      $data['data'] = DiagnosisModel::join('users', 'diagnosis.idDokter', 'users.id')->join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->join('datasapi', 'datasapi.idSapi','pemeriksaan.idSapi')->select('diagnosis.*', 'users.name as dokter', 'pemeriksaan.idSapi', 'datasapi.idstatussapi')->get();
       return response()->view('pages.penyakit.diagnosis', $data);
     }
 
@@ -176,13 +177,19 @@ class PenyakitController extends Controller
           }
         }
         if ($num_exists >1 ) {
-          $prediksi_penyakit = (($num_exists/$numkombinasi)*100);
+          $prediksi_penyakit = (($num_exists/$numkombinasi)*100); // Calculation
           $prediksi_penyakit = number_format($prediksi_penyakit, 2);
           $PREDIKSI[] = ['Penyakit' => $penyakitDB[$i], 'prediksi' => $prediksi_penyakit];
         }
       }
 
       return $PREDIKSI;
+    }
+
+    public function updateSehat(Request $request, $id){
+      SapiModel::where('idSapi', $id)->update(['idstatussapi' => 1]);
+      $request->session()->flash('message', 'Sapi dengan ID '.$id.' sudah dinyatakan sehat.');
+      return redirect('/diagnosis');
     }
 
 }

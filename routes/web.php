@@ -35,6 +35,8 @@ Route::post('/tambahsapi','SapiController@tambahDataSapi');
 Route::post('/updatesapi/{id}','SapiController@updateDataSapi');
 //      Rekam Medis
 Route::get('/medis','MedisController@showRekamMedisView');
+Route::get('/medislist/{id}','MedisController@showListRekamMedis');
+Route::get('/medisdetail/{id}','MedisController@viewDetailRekamMedis');
 //      Jadwal Pakan
 Route::get('/jadwalpakan','SapiController@showJadwalPakanView');
 
@@ -46,6 +48,7 @@ Route::post('/tambahpemeriksaan','PenyakitController@tambahEntryPemeriksaan');
 Route::get('/diagnosis','PenyakitController@showDiagnosisView');
 Route::get('/diagnosisdetail/{id}','PenyakitController@viewDetailDiagnosis');
 Route::get('/analisis/{id}','PenyakitController@analisisDataPemeriksaan');
+Route::get('/updatesehat/{id}','PenyakitController@updateSehat');
 Route::post('/tambahDiagnosis','PenyakitController@tambahDiagnosis');
 //      Daftar Penyakit
 Route::get('/daftarpenyakit','PenyakitController@showDaftarPenyakit');

@@ -2,21 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\HipotesisModel;
+use App\PemeriksaanModel;
 use App\DiagnosisModel;
+use App\SapiModel;
+use App\Http\Controllers\PenyakitController;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 
 class MedisController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
     public function showRekamMedisView() {
-        $data['medis'] = DiagnosisModel::join('penyakit','diagnosispenyakit.idPenyakit','=','penyakit.idPenyakit')->select('diagnosispenyakit.idDiagnosis','diagnosispenyakit.idSapi','penyakit.namaPenyakit','diagnosispenyakit.saran')->get();
+        $data['data'] = PemeriksaanModel::join('datasapi','datasapi.idSapi','pemeriksaan.idSapi')->where('pemeriksaan.status', 1)->get();
         return view('pages.medis.rekammedis', $data);
+    }
+
+    public function showListRekamMedis($id){
+      $data['data'] = DiagnosisModel::join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->where('pemeriksaan.idSapi', $id)->select('diagnosis.*', 'pemeriksaan.*')->get();
+      return response()->view('pages.medis.listrekammedis', $data);
+    }
+
+    public function viewDetailRekamMedis($id){
+      $data = DiagnosisModel::join('pemeriksaan', 'diagnosis.idPemeriksaan', 'pemeriksaan.idPemeriksaan')->join('datasapi', 'pemeriksaan.idSapi', 'datasapi.idSapi')->where('idDiagnosis', $id)->first();
+      $datagejala = explode(',', $data->gejala);
+      $PENYAKIT_CONTROLLER = new PenyakitController();
+      $gejala = $PENYAKIT_CONTROLLER->getGejalaData($datagejala);
+      $kombinasigejala = $PENYAKIT_CONTROLLER->getKombinasiPenyakit($datagejala);
+      $prediksi = $PENYAKIT_CONTROLLER->hitungPrediksiPenyakit($datagejala, $kombinasigejala);
+      return response()->view('pages.medis.detailrekammedis', compact('data', 'gejala', 'prediksi'));
     }
 
     public function showForm() {
